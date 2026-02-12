@@ -31,7 +31,7 @@ async function sendMessage() {
     //uses the signal from the abort controller to allow cancellation of the request
     const response = await fetch("http://localhost:8080/api/chat-stream", {
       method: "POST",
-      header: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt }),
       signal: abortController.signal,
     });
