@@ -18,7 +18,7 @@ async function sendMessage() {
   }
 
   //grab the user's prompt and display it
-  chatBox.innerHTML += `<div class="user-message>You: ${prompt}</div>`;
+  chatBox.innerHTML += `<div class="user-message">You: ${prompt}</div>`;
   inputBox.value = "";
   stopBtn.disabled = false;
   isGenerating = true;
@@ -57,9 +57,10 @@ async function sendMessage() {
       chatBox.scrollTop = chatBox.scrollHeight;
     }
   } catch (error) {
-    //if there is an abort error, append that to the chat box to debug
     if (error.name === "AbortError") {
-      chatBox.innerHTML += `<div class="bot-message" style="color: red;">Error: ${error.message}<div>`;
+      chatBox.innerHTML += `<div class="bot-message" style="color: red;">Generation stopped.</div>`;
+    } else {
+      chatBox.innerHTML += `<div class="bot-message" style="color: red;">Error: ${error.message}</div>`;
     }
   } finally {
     //always runs to disable stop button and reset generating state
